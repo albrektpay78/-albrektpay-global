@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AlbrektPay Global — Secure Wallet by Albrekt Henry</title>
+<meta name="description" content="AlbrektPay Global — fast, secure wallet and payments worldwide." />
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --accent:#06b6d4;
+    --muted:#94a3b8;
+    --glass: rgba(255,255,255,0.03);
+    --radius:14px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; min-height:100vh; background:
+    linear-gradient(180deg, rgba(6,11,23,1) 0%, rgba(10,16,26,1) 60%),
+    radial-gradient(600px 300px at 10% 10%, rgba(6,182,212,0.06), transparent 10%),
+    radial-gradient(500px 250px at 90% 90%, rgba(99,102,241,0.04), transparent 10%);
+    color:#e6eef8; display:flex; align-items:center; justify-content:center;
+    padding:40px;
+  }
+
+  .wrap{width:100%; max-width:980px; display:grid; grid-template-columns: 420px 1fr; gap:28px; align-items:stretch;}
+  .brandCard{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:28px; border-radius:var(--radius); box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    display:flex; flex-direction:column; justify-content:space-between; min-height:380px;
+  }
+  .brandHead{display:flex; gap:14px; align-items:center;}
+  .logo{
+    height:64px; width:64px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#6366f1);
+    display:flex; align-items:center; justify-content:center; font-weight:700; color:#021021; font-size:20px;
+    box-shadow: 0 6px 18px rgba(6,182,212,0.12), inset 0 -6px 12px rgba(0,0,0,0.18);
+  }
+  h1{margin:12px 0 6px;font-size:20px;}
+  p.lead{margin:0;color:var(--muted);line-height:1.45}
+  .features{margin-top:22px; display:grid; gap:10px;}
+  .feature{display:flex; gap:12px; align-items:flex-start; color:var(--muted);}
+  .dot{height:36px; width:36px; border-radius:8px; background:var(--glass); display:grid; place-items:center; color:var(--accent); font-weight:700}
+
+  .panel{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:28px; border-radius:var(--radius); min-height:380px; box-shadow: 0 18px 40px rgba(2,6,23,0.55);
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+
+  form{display:flex; flex-direction:column; gap:12px; max-width:500px;}
+  label{font-size:13px; color:var(--muted)}
+  .input{
+    background:transparent; border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:10px;
+    color:inherit; font-size:15px; outline:none;
+  }
+  .input:focus{box-shadow: 0 6px 18px rgba(6,182,212,0.06); border-color:var(--accent)}
+  .row{display:flex; gap:12px;}
+  .col{flex:1}
+
+  .primary{
+    background: linear-gradient(90deg,var(--accent), #6366f1);
+    border:none; color:#021021; padding:12px 16px; border-radius:10px; font-weight:600; cursor:pointer;
+    box-shadow: 0 8px 24px rgba(6,182,212,0.12);
+  }
+  .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06); padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer}
+  .tiny{font-size:13px;color:var(--muted)}
+
+  .or{margin:10px 0; display:flex; align-items:center; gap:12px}
+  .or:before,.or:after{content:"";flex:1;height:1px;background:rgba(255,255,255,0.04)}
+  .danger{color:#ffb4b4;font-size:13px}
+
+  .footer{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:18px; color:var(--muted); font-size:13px}
+
+  /* responsive */
+  @media (max-width:920px){
+    .wrap{grid-template-columns:1fr; max-width:720px}
+    .brandCard, .panel{min-height:auto}
+  }
+
+  /* small success modal */
+  .toast{position:fixed; right:20px; bottom:20px; background:#06202a; padding:14px 18px; border-radius:12px; color:#c9fff7; box-shadow:0 14px 40px rgba(2,6,23,0.5); display:none}
+  .toast.show{display:block}
+</style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <aside class="brandCard" aria-labelledby="brandTitle">
+      <div>
+        <div class="brandHead">
+          <div class="logo">AH</div>
+          <div>
+            <div style="display:flex; align-items:baseline; gap:8px">
+              <h1 id="brandTitle">AlbrektPay Global</h1>
+              <div style="font-size:12px;color:var(--muted);padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.01)">Worldwide</div>
+            </div>
+            <p class="lead">A fast, secure wallet & payment hub by <strong>Albrekt Henry</strong>. Built for global access and modern security.</p>
+          </div>
+        </div>
+
+        <div class="features" aria-hidden="false">
+          <div class="feature"><div class="dot">1</div><div><strong>Sign up with email & mobile</strong><div class="tiny">Flexible verification and multi-factor ready.</div></div></div>
+          <div class="feature"><div class="dot">2</div><div><strong>Secure by design</strong><div class="tiny">Client & server input validation, recommended TLS, and audit logging.</div></div></div>
+          <div class="feature"><div class="dot">3</div><div><strong>Global-ready</strong><div class="tiny">Localizable UI, currency-ready architecture (server work required).</div></div></div>
+        </div>
+      </div>
+
+      <footer style="margin-top:18px">
+        <div class="tiny">Contact: <strong>Albrekt Henry</strong> — <a href="mailto:albrekthenry@gmail.com" style="color:var(--accent);text-decoration:none">albrekthenry@gmail.com</a></div>
+        <div class="tiny">© <span id="year"></span> AlbrektPay Global</div>
+      </footer>
+    </aside>
+
+    <section class="panel" aria-labelledby="authTitle">
+      <div>
+        <h2 id="authTitle">Create your AlbrektPay account</h2>
+        <p class="tiny" style="margin:6px 0 18px">Sign up using your email and mobile number. This demo does client-side validation only — connect to a secure backend before going live.</p>
+
+        <form id="signupForm" autocomplete="on" novalidate>
+          <label for="fullName">Full name</label>
+          <input id="fullName" class="input" name="fullName" required placeholder="Albrekt Henry" value="Albrekt Henry" />
+
+          <label for="email">Email address</label>
+          <input id="email" class="input" type="email" name="email" required placeholder="you@example.com" value="albrekthenry@gmail.com" />
+
+          <label for="mobile">Mobile number</label>
+          <div class="row">
+            <select id="country" class="input" style="max-width:120px" aria-label="Country code">
+              <!-- small list to demo; expand per your needs -->
+              <option value="+1">+1 (US)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+233">+233 (GH)</option>
+              <option value="+91">+91 (IN)</option>
+              <option value="+49">+49 (DE)</option>
+            </select>
+            <input id="mobile" class="input col" type="tel" name="mobile" required placeholder="123-456-7890" />
+          </div>
+
+          <label for="password">Password</label>
+          <input id="password" class="input" type="password" name="password" required placeholder="Create a strong password" />
+
+          <div style="display:flex;gap:10px;margin-top:8px;align-items:center">
+            <button type="submit" class="primary" aria-label="Create account">Create account</button>
+            <button type="button" id="demoSignIn" class="secondary">Already have an account? Sign in</button>
+          </div>
+
+          <div class="or"><span class="tiny">or continue with</span></div>
+
+          <div style="display:flex;gap:10px;">
+            <button type="button" class="secondary" id="emailMagic">Email link</button>
+            <button type="button" class="secondary" id="smsMagic">SMS code</button>
+          </div>
+
+          <div style="margin-top:10px">
+            <label class="tiny"><input type="checkbox" id="agree" required /> I agree to the <a href="#" style="color:var(--accent)">Terms</a> and <a href="#" style="color:var(--accent)">Privacy</a>.</label>
+          </div>
+
+          <div id="error" class="danger" role="alert" style="display:none"></div>
+        </form>
+      </div>
+
+      <div class="footer">
+        <div class="tiny">Built for global use — local rules and compliance apply.</div>
+        <div class="tiny">Support: <a href="mailto:albrekthenry@gmail.com" style="color:var(--accent);text-decoration:none">albrekthenry@gmail.com</a></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function(){
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('signupForm');
+    const err = document.getElementById('error');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 4500);
+    }
+
+    function validatePhone(phone){
+      // simple digits check (enhance with lib on server)
+      const digits = phone.replace(/[^0-9]/g,'');
+      return digits.length >= 6 && digits.length <= 15;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      err.style.display = 'none';
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const country = document.getElementById('country').value;
+      const password = document.getElementById('password').value;
+      const agree = document.getElementById('agree').checked;
+
+      if(!name){ err.textContent = 'Please enter your full name.'; err.style.display='block'; return; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent = 'Enter a valid email address.'; err.style.display='block'; return; }
+      if(!validatePhone(mobile)){ err.textContent = 'Enter a valid mobile number (digits only).'; err.style.display='block'; return; }
+      if(password.length < 8){ err.textContent = 'Password must be at least 8 characters.'; err.style.display='block'; return; }
+      if(!agree){ err.textContent = 'You must agree to the Terms and Privacy.'; err.style.display='block'; return; }
+
+      // Simulated success flow — replace with secure server API call
+      const payload = {
+        name, email, mobile: country + ' ' + mobile, ts: new Date().toISOString()
+      };
+      console.log('SIGNUP PAYLOAD (send to server):', payload);
+
+      // NOTE: Do NOT store passwords or sensitive info in plaintext. Use HTTPS + server hashing.
+      showToast('Account created — check ' + email + ' for verification (demo).');
+
+      // clear sensitive inputs
+      document.getElementById('password').value = '';
+    });
+
+    document.getElementById('demoSignIn').addEventListener('click', () => {
+      showToast('This demo has no server sign-in. Implement backend auth (JWT, sessions).');
+    });
+
+    document.getElementById('emailMagic').addEventListener('click', () => {
+      showToast('Email link requested. Integrate an email provider (SendGrid, SES) on your backend.');
+    });
+    document.getElementById('smsMagic').addEventListener('click', () => {
+      showToast('SMS requested. Integrate a verified SMS provider (Twilio, Nexmo) on your backend.');
+    });
+
+    // small accessibility enhancement: allow Enter to submit in inputs
+    ['fullName','email','mobile','password'].forEach(id=>{
+      document.getElementById(id).addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter') {
+          e.preventDefault();
+          form.dispatchEvent(new Event('submit',{cancelable:true}));
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
